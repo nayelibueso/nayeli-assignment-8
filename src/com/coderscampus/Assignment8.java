@@ -9,17 +9,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Assignment8 {
-    private List<Integer> numbers = null;
-    private AtomicInteger i = new AtomicInteger(0);
+public class Assignment8 { 
+    private List<Integer> numbers = null; 
+    private AtomicInteger i = new AtomicInteger(0); 
 
-    public Assignment8() {
+    public Assignment8() { 
         try {
             // Make sure you download the output.txt file for Assignment 8
             // and place the file in the root of your Java project
-            numbers = Files.readAllLines(Paths.get("output.txt"))
-                    .stream()
-                    .map(n -> Integer.parseInt(n))
+            numbers = Files.readAllLines(Paths.get("output.txt")) 
+                    .stream() 
+                    .map(n -> Integer.parseInt(n)) 
                     .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
@@ -34,10 +34,10 @@ public class Assignment8 {
      * 
      * @return Integers from the parsed txt file, 1,000 numbers at a time
      */
-    public List<Integer> getNumbers() {
+    public List<Integer> getNumbers() { 
         int start, end;
-        synchronized (i) {
-            start = i.get();
+        synchronized (i) { 
+            start = i.get(); 
             end = i.addAndGet(1000);
 
             System.out.println("Starting to fetch records " + start + " to " + (end));
@@ -49,10 +49,10 @@ public class Assignment8 {
         } catch (InterruptedException e) {
         }
 
-        List<Integer> newList = new ArrayList<>();
-        IntStream.range(start, end)
+        List<Integer> newList = new ArrayList<>(); 
+        IntStream.range(start, end) 
                 .forEach(n -> {
-                    newList.add(numbers.get(n));
+                    newList.add(numbers.get(n)); 
                 });
         System.out.println("Done Fetching records " + start + " to " + (end));
         return newList;
